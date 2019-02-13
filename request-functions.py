@@ -47,7 +47,6 @@ def find_top_tracks(artist_id,token):
     url_params='?country=US'
     songs_data=requests.get(url+url_params,headers=headers).json()
     song_ids=[]
-    print(songs_data)
     for song in songs_data['tracks']:
         song_ids.append(song['id'])
     return song_ids
