@@ -6,9 +6,10 @@ import json
 
 # running script takes two arguments, year of top artists and
 # spotify access token
-year=sys.argv[1]
-artist_token=sys.argv[2]
-track_token=sys.argv[3]
+
+artist_token=sys.argv[1]
+track_token=sys.argv[2]
+year=sys.argv[3]
 
 # finds top 100 artists for a given year from Billboard's rankings
 # returns as a list of artist names
