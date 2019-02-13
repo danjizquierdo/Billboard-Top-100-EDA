@@ -6,16 +6,16 @@ import json
 
 # running script takes two arguments, year of top artists and
 # spotify access token
-year=arg1
-token=arg2
-
+year=sys.argv[1]
+artist_token=sys.argv[2]
+track_token=sys.argv[3]
 
 # finds top 100 artists for a given year from Billboard's rankings
 # returns as a list of artist names
 def top_artists(year):
     artist_list = []
     artist_list_clean = []
-    url = f'https://www.billboard.com/charts/year-end/{}/top-artists'
+    url = f'https://www.billboard.com/charts/year-end/{year}/top-artists'
     html = requests.get(url)
     html_content = BeautifulSoup(html.content, 'html.parser')
     artist_div = html_content.findAll('div', class_="ye-chart-item__title")
@@ -47,6 +47,7 @@ def find_top_tracks(artist_id,token):
     url_params='?country=US'
     songs_data=requests.get(url+url_params,headers=headers).json()
     song_ids=[]
+    print(songs_data)
     for song in songs_data['tracks']:
         song_ids.append(song['id'])
     return song_ids
@@ -58,10 +59,10 @@ artists_ids=[]
 songs_ids=[]
 top_artist_tracks={}
 for artist in artists:
-    artist_id=find_artist(artist,token)
+    artist_id=find_artist(artist,artist_token)
     top_artist_tracks[artist]={}
     top_artist_tracks[artist]['id']=artist_id
-    song_id=find_top_tracks(artist_id,token)
+    song_id=find_top_tracks(artist_id,track_token)
     top_artist_tracks[artist]['tracks']=song_id
 
 with open(f'tracks{year}.txt','w') as outfile:
