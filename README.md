@@ -1,4 +1,4 @@
-# Mod1-Project
+# Billboard Top 100 Artist EDA
 ### Team Members 
 Abdul Khimani, Daniel Izquierdo
 
